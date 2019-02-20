@@ -1,14 +1,24 @@
 {
   "name": "quiz",
   "version": "1.0.0",
-  "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup main.js --file bundle.js --format iife --watch"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "rollup": "^1.2.2"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hesalk/mandatory-uxdesign2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hesalk/mandatory-uxdesign2/issues"
+  },
+  "homepage": "https://github.com/hesalk/mandatory-uxdesign2#readme",
+  "description": ""
 }

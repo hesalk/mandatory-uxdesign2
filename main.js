@@ -1,3 +1,5 @@
 import controller from "./contoller"
 
-controller.reqthequs()
+controller.reqthequs();
+controller.quizbtn();
+

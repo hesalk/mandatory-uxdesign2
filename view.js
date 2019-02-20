@@ -22,5 +22,39 @@ export default {
     }
   });
     },
-    
+    renderqus: function(data,element,theClass,theotherClass,inputclassname){
+      console.log(data)
+      let count = 0;
+      for (let i = 0; i < data.length; i++) {
+        const newQus = data[i];
+        let qusholder = document.createElement("div");
+        qusholder.className = theClass;
+        qusholder.innerHTML = newQus.question;
+        element.appendChild(qusholder);
+        let radio = document.createElement("div");
+        qusholder.appendChild(radio);
+        radio.className = theotherClass;
+        let arr = newQus.newarr;
+        for (let i = 0; i < arr.length; i++) {
+          const element = arr[i];
+          let input = document.createElement("input");
+          input.className = inputclassname;
+          input.setAttribute("type","radio");
+          input.textContent = element;
+          input.setAttribute("name",count);
+          input.setAttribute("value",element);
+          radio.appendChild(input);
+          
+        }
+        count++
+      };
+    },
+    renderbtn: function(element,btnClass,txt){
+      let btn = document.createElement("button");
+      element.appendChild(btn);
+      btn.className = btnClass;
+      btn.textContent = txt;
+      return btn;
+    },
+
 }
