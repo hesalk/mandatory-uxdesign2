@@ -67,5 +67,26 @@ export default {
       btn.textContent = txt;
       return btn;
     },
+    refresh:function(element){
+      element.innerHTML = "";
+      
+    },
+    renderresult:function(element,txt,count,right,wrong,divClass){
+      let divCountainer = document.createElement("div");
+      divCountainer.className = divClass
+      let h1 = document.createElement("h1");
+      let pCount = document.createElement("p");
+      let pRight = document.createElement("p");
+      let pWrong = document.createElement("p");
+      h1.textContent = txt;
+      pRight.textContent = right;
+      pWrong.textContent = wrong;
+      pCount.textContent = count;
+      divCountainer.appendChild(h1);
+      divCountainer.appendChild(pCount);
+      divCountainer.appendChild(pRight);
+      divCountainer.appendChild(pWrong);
+      element.appendChild(divCountainer)
+    }
 
 }

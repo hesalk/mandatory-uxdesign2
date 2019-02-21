@@ -4,10 +4,28 @@
     var model = {
         qus: [],
         useransr: [],
+        useransrTotal:[],
         savequs: function(qusarr){
             qusarr.forEach(element => {
                 this.qus.push(element);
             });
+        },
+        rightansrHolder:function(){
+            let useransr = this.getuseransr();
+            let count = 0;
+                for (let i = 0; i < useransr.length; i++) {
+                    const element = useransr[i];
+                    if (element.valid === true) {count++;}     }
+         return count;
+        },
+        saveuseransertoTotal: function(){
+            console.log(this);
+            let ansrarr = this.getuseransr();
+            ansrarr.forEach(element => {
+                this.useransrTotal.push(element);
+            });
+            console.log(this.useransrTotal);
+            this.saveTotaltoCurr();
         },
         saveuseranser: function(qus,valid){
             let newnast = {
@@ -16,11 +34,43 @@
             };
             this.useransr.push(newnast);
         },
+        wrongansrHolder:function(){
+            let useransr = this.getuseransr();
+            let count = 0;
+              for (let i = 0; i < useransr.length; i++) {
+                  const element = useransr[i];
+                  if (element.valid === false) {count++;}            }
+          return count;
+        },
+        resultscreen: function(){
+            let useransr = this.getuseransr();
+            let result = {
+                ansrcount: useransr.length,
+                right:this.rightansrHolder(),
+                wrong:this.wrongansrHolder()
+            };
+            return result
+        },
+        saveTotaltoCurr: function(){
+            this.useransr.length = 0;
+            let arr = this.getuseranserTotal();
+            arr.forEach(element => {
+                this.useransr.push(element);
+            });
+            let result = this.resultscreen();
+            return result;
+        },
         getuseransr: function(){
             return this.useransr;
         },
+        getuseranserTotal:function(){
+            return this.useransrTotal
+        },
         getqus: function(){
             return this.qus;
+        },
+        refreshModell:function(){
+            this.qus.length = 0;
         },
         shuffeldansr:function(){
             let data = this.getqus();
@@ -119,11 +169,34 @@
           btn.textContent = txt;
           return btn;
         },
+        refresh:function(element){
+          element.innerHTML = "";
+          
+        },
+        renderresult:function(element,txt,count,right,wrong,divClass){
+          let divCountainer = document.createElement("div");
+          divCountainer.className = divClass;
+          let h1 = document.createElement("h1");
+          let pCount = document.createElement("p");
+          let pRight = document.createElement("p");
+          let pWrong = document.createElement("p");
+          h1.textContent = txt;
+          pRight.textContent = right;
+          pWrong.textContent = wrong;
+          pCount.textContent = count;
+          divCountainer.appendChild(h1);
+          divCountainer.appendChild(pCount);
+          divCountainer.appendChild(pRight);
+          divCountainer.appendChild(pWrong);
+          element.appendChild(divCountainer);
+        }
 
     };
 
     var controller = {
         main: document.querySelector("main"),
+        modalContent: document.querySelector("#valid--modal"),
+        modalsave: document.querySelector("#main--modal--save"),
         reqthequs: function(){
             viwe.ajax("GET","https://opentdb.com/api.php?amount=10")
             .then(function(data){
@@ -150,6 +223,12 @@
             });
 
         },
+        refresh:function(){
+            this.main.innerHTML = "";
+            model.refreshModell();
+            this.reqthequs();
+            this.quizbtn();
+        },
         validbtnfunc: function(){
             console.log("validbtn");//test
             console.log(this);//test
@@ -167,7 +246,15 @@
                     }
                 }
             });
-
+            console.log(model.resultscreen().ansrcount);
+            let results = model.resultscreen();
+            console.log(results);
+            viwe.renderresult(this.modalContent,"Du har svarat","Antal svarade fr[gor"+" "+":"+results.ansrcount,"Antal right fr[gor"+" "+":"+results.right,"Antal wrong fr[gor"+" "+":"+results.wrong,"main--modal--container");
+            this.modalsave.addEventListener('click', ()=>{
+                console.log(this.testbtn);
+                model.saveuseransertoTotal();
+                this.refresh();
+            });
         },
 
     };
