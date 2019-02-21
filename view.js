@@ -22,7 +22,7 @@ export default {
     }
   });
     },
-    renderqus: function(data,element,theClass,theotherClass,inputclassname){
+    renderqus: function(data,element,theClass,theotherClass,inputclassname,lableclass){
       console.log(data)
       let count = 0;
       for (let i = 0; i < data.length; i++) {
@@ -37,14 +37,19 @@ export default {
         let arr = newQus.newarr;
         for (let i = 0; i < arr.length; i++) {
           const element = arr[i];
+          let lable = document.createElement("lable");
+          lable.setAttribute("for",element);
+          lable.innerHTML = element;
+          radio.appendChild(lable);
+          lable.className = lableclass;
           let input = document.createElement("input");
           input.className = inputclassname;
           input.setAttribute("type","radio");
           input.textContent = element;
           input.setAttribute("name",count);
           input.setAttribute("value",element);
+          input.setAttribute("id",element);
           radio.appendChild(input);
-          
         }
         count++
       };
