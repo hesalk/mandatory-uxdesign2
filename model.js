@@ -1,12 +1,23 @@
 export default {
     qus: [],
+    useransr: [],
     savequs: function(qusarr){
         qusarr.forEach(element => {
             this.qus.push(element)
         });
     },
+    saveuseranser: function(qus,valid){
+        let newnast = {
+            qus: qus,
+            valid: valid,
+        }
+        this.useransr.push(newnast);
+    },
+    getuseransr: function(){
+        return this.useransr;
+    },
     getqus: function(){
-        return this.qus
+        return this.qus;
     },
     shuffeldansr:function(){
         let data = this.getqus();

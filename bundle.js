@@ -3,13 +3,24 @@
 
     var model = {
         qus: [],
+        useransr: [],
         savequs: function(qusarr){
             qusarr.forEach(element => {
                 this.qus.push(element);
             });
         },
+        saveuseranser: function(qus,valid){
+            let newnast = {
+                qus: qus,
+                valid: valid,
+            };
+            this.useransr.push(newnast);
+        },
+        getuseransr: function(){
+            return this.useransr;
+        },
         getqus: function(){
-            return this.qus
+            return this.qus;
         },
         shuffeldansr:function(){
             let data = this.getqus();
@@ -76,6 +87,7 @@
             let radio = document.createElement("div");
             qusholder.appendChild(radio);
             radio.className = theotherClass;
+            newQus.inputRadio = [];
             let arr = newQus.newarr;
             for (let i = 0; i < arr.length; i++) {
               const element = arr[i];
@@ -91,9 +103,13 @@
               input.setAttribute("name",count);
               input.setAttribute("value",element);
               input.setAttribute("id",element);
+              newQus.inputRadio.push(input);
               radio.appendChild(input);
             }
             count++;
+            console.log(newQus);
+            newQus.radioHolder = radio;
+            console.log(newQus.radioHolder);//test
           }    },
         renderbtn: function(element,btnClass,txt){
           let btn = document.createElement("button");
@@ -114,29 +130,46 @@
                 model.savequs(results);
             });
         },
-        quizbtnfanc:function(){
-            console.log(this.parentElement);
+        quizbtnfanc:() => {
             model.shuffeldansr();
             let main = document.querySelector("main");
             viwe.renderqus(model.getqus(),main,"qus","main--radio","radio--input","radio--lable");
             let valbtn = viwe.renderbtn(main,"main--validation","validat");
+            return valbtn;
         },
         quizbtn: function(){
-            let _this = this;
-            this.newbtn = viwe.renderbtn(_this.main, "main--btn", "click to start");
-            this.newbtn.addEventListener('click', _this.quizbtnfanc);
+            this.newbtn = viwe.renderbtn(this.main, "main--btn", "click to start");
+            this.newbtn.addEventListener('click', ()=>{
+                console.log(this);
+                this.testbtn = this.quizbtnfanc();
+                console.log(this.testbtn);
+                this.testbtn.addEventListener('click', ()=>{this.validbtnfunc();});
+            });
 
         },
-        validatebtn: function(){
-        let test = this.parentElement;
-        }
+        validbtnfunc: function(){
+            console.log("validbtn");//test
+            console.log(this);//test
+            let data = model.getqus();
+            data.forEach(element => {
+                let inputarr = element.inputRadio;
+                for (let i = 0; i < inputarr.length; i++) {
+                    const el = inputarr[i];
+                    if(el.checked === true){
+                        console.log(element.question);
+                        if (el.id === element.correct_answer) {
+                            console.log("ok");
+                            model.saveuseranser(element.question,true);
+                        }else{model.saveuseranser(element.question,false);}
+                    }
+                }
+            });
+
+        },
 
     };
 
     controller.reqthequs();
     controller.quizbtn();
-    setInterval(function(){
-    controller.validatebtn();
-    },3000);
 
 }());

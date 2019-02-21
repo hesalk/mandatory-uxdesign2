@@ -34,6 +34,7 @@ export default {
         let radio = document.createElement("div");
         qusholder.appendChild(radio);
         radio.className = theotherClass;
+        newQus.inputRadio = [];
         let arr = newQus.newarr;
         for (let i = 0; i < arr.length; i++) {
           const element = arr[i];
@@ -49,9 +50,13 @@ export default {
           input.setAttribute("name",count);
           input.setAttribute("value",element);
           input.setAttribute("id",element);
+          newQus.inputRadio.push(input)
           radio.appendChild(input);
         }
         count++
+        console.log(newQus);
+        newQus.radioHolder = radio;
+        console.log(newQus.radioHolder);//test
       };
     },
     renderbtn: function(element,btnClass,txt){
