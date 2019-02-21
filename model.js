@@ -23,7 +23,6 @@ export default {
             this.useransrTotal.push(element);
         });
         console.log(this.useransrTotal);
-        this.saveTotaltoCurr();
     },
     saveuseranser: function(qus,valid){
         let newnast = {
@@ -31,6 +30,7 @@ export default {
             valid: valid,
         }
         this.useransr.push(newnast);
+        console.log(this.getuseransr())
     },
     wrongansrHolder:function(){
         let useransr = this.getuseransr();
@@ -70,6 +70,9 @@ export default {
     },
     refreshModell:function(){
         this.qus.length = 0;
+        this.saveuseransertoTotal();
+        this.useransr.length = 0;
+        console.log(this.getuseranserTotal())
     },
     shuffeldansr:function(){
         let data = this.getqus();

@@ -69,9 +69,10 @@ export default {
     },
     refresh:function(element){
       element.innerHTML = "";
-      
+
     },
     renderresult:function(element,txt,count,right,wrong,divClass){
+      element.textContent = ""
       let divCountainer = document.createElement("div");
       divCountainer.className = divClass
       let h1 = document.createElement("h1");

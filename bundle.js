@@ -25,7 +25,6 @@
                 this.useransrTotal.push(element);
             });
             console.log(this.useransrTotal);
-            this.saveTotaltoCurr();
         },
         saveuseranser: function(qus,valid){
             let newnast = {
@@ -33,6 +32,7 @@
                 valid: valid,
             };
             this.useransr.push(newnast);
+            console.log(this.getuseransr());
         },
         wrongansrHolder:function(){
             let useransr = this.getuseransr();
@@ -71,6 +71,9 @@
         },
         refreshModell:function(){
             this.qus.length = 0;
+            this.saveuseransertoTotal();
+            this.useransr.length = 0;
+            console.log(this.getuseranserTotal());
         },
         shuffeldansr:function(){
             let data = this.getqus();
@@ -171,9 +174,10 @@
         },
         refresh:function(element){
           element.innerHTML = "";
-          
+
         },
         renderresult:function(element,txt,count,right,wrong,divClass){
+          element.textContent = "";
           let divCountainer = document.createElement("div");
           divCountainer.className = divClass;
           let h1 = document.createElement("h1");
@@ -198,6 +202,7 @@
         modalContent: document.querySelector("#valid--modal"),
         modalsave: document.querySelector("#main--modal--save"),
         reqthequs: function(){
+            console.log(model.getqus());
             viwe.ajax("GET","https://opentdb.com/api.php?amount=10")
             .then(function(data){
                 let results =data.results;
@@ -219,12 +224,29 @@
                 console.log(this);
                 this.testbtn = this.quizbtnfanc();
                 console.log(this.testbtn);
-                this.testbtn.addEventListener('click', ()=>{this.validbtnfunc();});
+                this.testbtn.addEventListener('click', ()=>{
+                    this.validbtnfunc();
+                    let results = model.resultscreen();
+                    console.log(results);
+                    viwe.renderresult(this.modalContent,"Du har svarat","Antal svarade fr[gor"+" "+":"+results.ansrcount,"Antal right fr[gor"+" "+":"+results.right,"Antal wrong fr[gor"+" "+":"+results.wrong,"main--modal--container");
+                });
             });
-
+            this.savebt();
+        },
+        tst:function(){
+            console.log(this);
+        },
+        savebt:function(){
+            let _this = this;
+            //this.modalsave.removeEventListener('click',_this.refresh)
+            this.modalsave.addEventListener('click', function testfunc(){
+                console.log(_this);
+                _this.refresh();
+                _this.modalsave.removeEventListener('click',testfunc, true);
+            }, true);
         },
         refresh:function(){
-            this.main.innerHTML = "";
+            viwe.refresh(this.main);
             model.refreshModell();
             this.reqthequs();
             this.quizbtn();
@@ -233,6 +255,7 @@
             console.log("validbtn");//test
             console.log(this);//test
             let data = model.getqus();
+            console.log(data);
             data.forEach(element => {
                 let inputarr = element.inputRadio;
                 for (let i = 0; i < inputarr.length; i++) {
@@ -245,15 +268,6 @@
                         }else{model.saveuseranser(element.question,false);}
                     }
                 }
-            });
-            console.log(model.resultscreen().ansrcount);
-            let results = model.resultscreen();
-            console.log(results);
-            viwe.renderresult(this.modalContent,"Du har svarat","Antal svarade fr[gor"+" "+":"+results.ansrcount,"Antal right fr[gor"+" "+":"+results.right,"Antal wrong fr[gor"+" "+":"+results.wrong,"main--modal--container");
-            this.modalsave.addEventListener('click', ()=>{
-                console.log(this.testbtn);
-                model.saveuseransertoTotal();
-                this.refresh();
             });
         },
 
