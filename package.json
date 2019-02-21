@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@material/button": "^0.44.1",
+    "@material/dialog": "^0.44.1",
     "rollup": "^1.2.2"
   },
   "devDependencies": {},

@@ -14,11 +14,13 @@ export default {
         model.shuffeldansr();
         let main = document.querySelector("main")
         viwe.renderqus(model.getqus(),main,"qus","main--radio","radio--input","radio--lable");
-        let valbtn = viwe.renderbtn(main,"main--validation","validat");
+        let valbtn = viwe.renderbtn(main,"main--validation btn btn-success","validat");
+        valbtn.setAttribute("data-toggle","modal");
+        valbtn.setAttribute("data-target","#exampleModal");
         return valbtn;
     },
     quizbtn: function(){
-        this.newbtn = viwe.renderbtn(this.main, "main--btn", "click to start");
+        this.newbtn = viwe.renderbtn(this.main, "main--btn btn btn-primary", "click to start");
         this.newbtn.addEventListener('click', ()=>{
             console.log(this)
             this.testbtn = this.quizbtnfanc();
