@@ -14,11 +14,25 @@ main{
     box-shadow: 3px 6px 18px 0px rgba(0, 0, 0, 0.2);
     overflow: scroll;
 }
-
+.radio--input{
+    float: left;
+}
+.radio--lable{
+    float: left;
+    top: 7px;
+    position: relative;
+}
+.main--radio{
+    display: flex;
+    flex-direction: column;
+}
 .qus{
     padding: 25px;
     margin: 10px;
+    display: flex;
+    flex-direction: column;
 }
+
 /* width */
 ::-webkit-scrollbar {
     width: 10px;

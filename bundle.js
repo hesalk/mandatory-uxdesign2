@@ -84,6 +84,7 @@
                 arr = this.shuffle(arr);
             });
         },
+        
         shuffle: function(array) {
             var currentIndex = array.length, temporaryValue, randomIndex;
           
@@ -144,11 +145,21 @@
             let arr = newQus.newarr;
             for (let i = 0; i < arr.length; i++) {
               const element = arr[i];
+              let alter = document.createElement("div");
+              alter.className = "main--radio--altr list-group-item";
+              radio.appendChild(alter);
               let lable = document.createElement("lable");
               lable.setAttribute("for",element);
               lable.innerHTML = element;
-              radio.appendChild(lable);
               lable.className = lableclass;
+              let inputdiv = document.createElement("div");
+              inputdiv.className = "mdc-radio ";
+              let inputback = document.createElement("div");
+              inputback.className = "mdc-radio__background";
+              let inputoutercircle = document.createElement("div");
+              inputoutercircle.className = "mdc-radio__outer-circle";
+              let inputinnercircle = document.createElement("div");
+              inputinnercircle.className = "mdc-radio__inner-circle";
               let input = document.createElement("input");
               input.className = inputclassname;
               input.setAttribute("type","radio");
@@ -157,7 +168,12 @@
               input.setAttribute("value",element);
               input.setAttribute("id",element);
               newQus.inputRadio.push(input);
-              radio.appendChild(input);
+              inputdiv.appendChild(input);
+              inputdiv.appendChild(inputback);
+              inputback.appendChild(inputoutercircle);
+              inputback.appendChild(inputinnercircle);
+              alter.appendChild(inputdiv);
+              alter.appendChild(lable);
             }
             count++;
             console.log(newQus);
@@ -202,6 +218,8 @@
         modalContent: document.querySelector("#valid--modal"),
         modalsave: document.querySelector("#main--modal--save"),
         panelSec: document.querySelector("#panel--sec"),
+        stats: document.querySelector("#menu--stats"),
+        toggelBtn: document.querySelector(".toggle-button"),
         reqthequs: function(){
             console.log(model.getqus());
             viwe.ajax("GET","https://opentdb.com/api.php?amount=10")
@@ -217,13 +235,16 @@
         quizbtnfanc:() => {
             model.shuffeldansr();
             let main = document.querySelector(".mainCon");
-            viwe.renderqus(model.getqus(),main,"qus","main--radio","radio--input","radio--lable");
+            main.textContent = "";
+            viwe.renderqus(model.getqus(),main,"qus card","main--radio card list-group list-group-flush","radio--input mdc-radio__native-control","radio--lable list-group list-group-flush");
             let valbtn = viwe.renderbtn(main,"main--validation btn btn-success","validat");
             valbtn.setAttribute("data-toggle","modal");
             valbtn.setAttribute("data-target","#exampleModal");
             return valbtn;
         },
         quizbtn: function(){
+            model.refreshModell();
+            console.log(model.getuseransr());
             this.newbtn = viwe.renderbtn(this.panelSec, "main--btn material-icons mdc-top-app-bar__action-item", "play_arrow");
             this.newbtn.addEventListener('click', ()=>{
                 console.log(this);
@@ -244,7 +265,6 @@
         },
         savebt:function(){
             let _this = this;
-            //this.modalsave.removeEventListener('click',_this.refresh)
             this.modalsave.addEventListener('click', function testfunc(){
                 console.log(_this);
                 _this.refresh();
@@ -257,6 +277,19 @@
             this.reqthequs();
             this.newbtn.remove();
             this.quizbtn();
+        },
+        statsfunc: function(){
+            let _this = this;
+            console.log(this.stats);
+            this.stats.addEventListener('click', function testfunc2(){
+                console.log(_this);
+                console.log("_this");
+                viwe.refresh(_this.main);
+                let results = model.saveTotaltoCurr();
+                console.log(results);
+                viwe.renderresult(_this.main,"Du har svarat","Antal svarade fr[gor"+" "+":"+results.ansrcount,"Antal right fr[gor"+" "+":"+results.right,"Antal wrong fr[gor"+" "+":"+results.wrong,"main--modal--container");
+                _this.stats.removeEventListener('click', testfunc2, true);
+            },true);
         },
         validbtnfunc: function(){
             console.log("validbtn");//test

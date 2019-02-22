@@ -38,11 +38,21 @@ export default {
         let arr = newQus.newarr;
         for (let i = 0; i < arr.length; i++) {
           const element = arr[i];
+          let alter = document.createElement("div");
+          alter.className = "main--radio--altr list-group-item";
+          radio.appendChild(alter);
           let lable = document.createElement("lable");
           lable.setAttribute("for",element);
           lable.innerHTML = element;
-          radio.appendChild(lable);
           lable.className = lableclass;
+          let inputdiv = document.createElement("div");
+          inputdiv.className = "mdc-radio ";
+          let inputback = document.createElement("div");
+          inputback.className = "mdc-radio__background"
+          let inputoutercircle = document.createElement("div");
+          inputoutercircle.className = "mdc-radio__outer-circle"
+          let inputinnercircle = document.createElement("div");
+          inputinnercircle.className = "mdc-radio__inner-circle"
           let input = document.createElement("input");
           input.className = inputclassname;
           input.setAttribute("type","radio");
@@ -50,8 +60,13 @@ export default {
           input.setAttribute("name",count);
           input.setAttribute("value",element);
           input.setAttribute("id",element);
-          newQus.inputRadio.push(input)
-          radio.appendChild(input);
+          newQus.inputRadio.push(input);
+          inputdiv.appendChild(input);
+          inputdiv.appendChild(inputback);
+          inputback.appendChild(inputoutercircle);
+          inputback.appendChild(inputinnercircle);
+          alter.appendChild(inputdiv);
+          alter.appendChild(lable);
         }
         count++
         console.log(newQus);

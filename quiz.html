@@ -21,7 +21,13 @@
 
 </head>
 <body>
-
+        <div class="mdc-radio">
+                <input class="mdc-radio__native-control" type="radio" id="radio-1" name="radios" >
+                <div class="mdc-radio__background">
+                  <div class="mdc-radio__outer-circle"></div>
+                  <div class="mdc-radio__inner-circle"></div>
+                </div>
+              </div>
             
     <main id="panel">
             <header class="mdc-top-app-bar">
@@ -59,17 +65,17 @@
                 <aside class="mdc-drawer">
                         <div class="mdc-drawer__content">
                           <nav class="mdc-list">
-                            <a class="mdc-list-item mdc-list-item--activated" href="#" aria-selected="true">
-                              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">inbox</i>
-                              <span class="mdc-list-item__text">Inbox</span>
+                            <a class="toggle-button2 mdc-list-item mdc-list-item--activated" href="#" aria-selected="true">
+                              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">home</i>
+                              <span class="mdc-list-item__text">Home</span>
                             </a>
                             <a class="mdc-list-item" href="#">
-                              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>
-                              <span class="mdc-list-item__text">Outgoing</span>
+                              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">info</i>
+                              <span class="mdc-list-item__text">About</span>
                             </a>
-                            <a class="mdc-list-item" href="#">
-                              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
-                              <span class="mdc-list-item__text">Drafts</span>
+                            <a id="menu--stats" class="mdc-list-item" href="#">
+                              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">archive</i>
+                              <span class="mdc-list-item__text">Stats</span>
                             </a>
                           </nav>
                         </div>
@@ -85,6 +91,9 @@
               
                 // Toggle button
                 document.querySelector('.toggle-button').addEventListener('click', function() {
+                  slideout.toggle();
+                });
+                document.querySelector('.toggle-button2').addEventListener('click', function() {
                   slideout.toggle();
                 });
               </script>

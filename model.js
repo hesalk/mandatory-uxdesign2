@@ -83,6 +83,7 @@ export default {
             arr = this.shuffle(arr)
         });
     },
+    
     shuffle: function(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
       
