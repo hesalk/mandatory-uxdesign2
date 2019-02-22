@@ -86,6 +86,15 @@ export default {
       element.innerHTML = "";
 
     },
+    renderabout: function(element,inner,divClass,h2Class){
+      let div = document.createElement("div");
+      div.className = divClass;
+      let h2 = document.createElement("h2");
+      h2.className = h2Class
+      element.appendChild(div);
+      div.appendChild(h2);
+      h2.textContent = inner;
+    },
     renderresult:function(element,txt,count,right,wrong,divClass){
       element.textContent = ""
       let divCountainer = document.createElement("div");

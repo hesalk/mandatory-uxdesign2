@@ -27,10 +27,9 @@
                     <div class="mdc-top-app-bar__row">
                       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
                         <a href="#" class="toggle-button material-icons mdc-top-app-bar__navigation-icon">menu</a>
-                        <span class="mdc-top-app-bar__title">Title</span>
+                        <span class="mdc-top-app-bar__title">Quiz </span>
                       </section>
                       <section id="panel--sec" class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-                            <a href="#" id="quzbtn" class="material-icons mdc-top-app-bar__action-item" aria-label="Download" alt="Download">replay</a>
                         </section>
                     </div>
                   </header>
@@ -58,15 +57,15 @@
                 <aside class="mdc-drawer">
                         <div class="mdc-drawer__content">
                           <nav class="mdc-list">
-                            <a class="toggle-button2 mdc-list-item mdc-list-item--activated" href="#" aria-selected="true">
+                            <a id="main--home" class="toggle-button2 mdc-list-item mdc-list-item--activated" href="#" aria-selected="true">
                               <i class="material-icons mdc-list-item__graphic" aria-hidden="true">home</i>
                               <span class="mdc-list-item__text">Home</span>
                             </a>
-                            <a class="mdc-list-item" href="#">
+                            <a id="main--about" class="toggle-button3 mdc-list-item" href="#">
                               <i class="material-icons mdc-list-item__graphic" aria-hidden="true">info</i>
                               <span class="mdc-list-item__text">About</span>
                             </a>
-                            <a id="menu--stats" class="mdc-list-item" href="#">
+                            <a id="menu--stats" class="toggle-button4 mdc-list-item" href="#">
                               <i class="material-icons mdc-list-item__graphic" aria-hidden="true">archive</i>
                               <span class="mdc-list-item__text">Stats</span>
                             </a>
@@ -87,6 +86,12 @@
                   slideout.toggle();
                 });
                 document.querySelector('.toggle-button2').addEventListener('click', function() {
+                  slideout.toggle();
+                });
+                document.querySelector('.toggle-button3').addEventListener('click', function() {
+                  slideout.toggle();
+                });
+                document.querySelector('.toggle-button4').addEventListener('click', function() {
                   slideout.toggle();
                 });
               </script>

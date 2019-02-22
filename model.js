@@ -84,7 +84,8 @@ export default {
             arr = this.shuffle(arr)
         });
     },
-    
+    home:"Welcome to the game click on the play button to start playing",
+    about:"This app made by Hesham Alkurdi",
     shuffle: function(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
       
