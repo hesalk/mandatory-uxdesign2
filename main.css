@@ -25,6 +25,7 @@ main{
 .main--radio{
     display: flex;
     flex-direction: column;
+    margin-top: 22px;
 }
 .qus{
     padding: 25px;

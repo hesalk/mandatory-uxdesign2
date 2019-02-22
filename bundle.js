@@ -250,7 +250,6 @@
             this.newbtn.addEventListener('click', ()=>{
                 console.log(this);
                 this.testbtn = this.quizbtnfanc();
-                this.statsfunc();
                 console.log(this.testbtn);
                 this.newbtn.remove();
                 this.testbtn.addEventListener('click', ()=>{
@@ -291,6 +290,7 @@
                 console.log(results);
                 viwe.renderresult(_this.main,"Du har svarat","Antal svarade fr[gor"+" "+":"+results.ansrcount,"Antal right fr[gor"+" "+":"+results.right,"Antal wrong fr[gor"+" "+":"+results.wrong,"main--modal--container");
                 _this.stats.removeEventListener('click', testfunc2, true);
+                _this.stats.addEventListener('click', testfunc2, true);
             },true);
         },
         validbtnfunc: function(){
