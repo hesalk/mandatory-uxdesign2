@@ -58,6 +58,7 @@
                 this.useransr.push(element);
             });
             let result = this.resultscreen();
+            this.useransr.length = 0;
             return result;
         },
         getuseransr: function(){
@@ -249,6 +250,7 @@
             this.newbtn.addEventListener('click', ()=>{
                 console.log(this);
                 this.testbtn = this.quizbtnfanc();
+                this.statsfunc();
                 console.log(this.testbtn);
                 this.newbtn.remove();
                 this.testbtn.addEventListener('click', ()=>{
@@ -316,5 +318,6 @@
     controller.reqthequs();
     controller.quizbtn();
     controller.style();
+    controller.statsfunc();
 
 }());

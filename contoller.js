@@ -36,6 +36,7 @@ export default {
         this.newbtn.addEventListener('click', ()=>{
             console.log(this)
             this.testbtn = this.quizbtnfanc();
+            this.statsfunc();
             console.log(this.testbtn);
             this.newbtn.remove();
             this.testbtn.addEventListener('click', ()=>{

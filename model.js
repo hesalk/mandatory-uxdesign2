@@ -57,6 +57,7 @@ export default {
             this.useransr.push(element);
         });
         let result = this.resultscreen();
+        this.useransr.length = 0;
         return result;
     },
     getuseransr: function(){
