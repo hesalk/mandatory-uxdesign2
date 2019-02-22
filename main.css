@@ -3,7 +3,10 @@ body{
     margin: auto;
     height: 800px;
 }
-
+.main--validation{
+    position: absolute;
+    left: 220px;
+}
 main{
     display: block;
     margin: auto;
