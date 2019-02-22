@@ -14,12 +14,28 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.sidr/2.2.1/stylesheets/jquery.sidr.light.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
+
 </head>
 <body>
 
-    <main>
-
+            
+    <main id="panel">
+            <header class="mdc-top-app-bar">
+                    <div class="mdc-top-app-bar__row">
+                      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                        <a href="#" class="toggle-button material-icons mdc-top-app-bar__navigation-icon">menu</a>
+                        <span class="mdc-top-app-bar__title">Title</span>
+                      </section>
+                      <section id="panel--sec" class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+                            <a href="#" id="quzbtn" class="material-icons mdc-top-app-bar__action-item" aria-label="Download" alt="Download">replay</a>
+                        </section>
+                    </div>
+                  </header>
+                  <div class="mainCon"></div>
     </main>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -39,8 +55,39 @@
               </div>
             </div>
           </div>
+          <nav id="menu">
+                <aside class="mdc-drawer">
+                        <div class="mdc-drawer__content">
+                          <nav class="mdc-list">
+                            <a class="mdc-list-item mdc-list-item--activated" href="#" aria-selected="true">
+                              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">inbox</i>
+                              <span class="mdc-list-item__text">Inbox</span>
+                            </a>
+                            <a class="mdc-list-item" href="#">
+                              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">send</i>
+                              <span class="mdc-list-item__text">Outgoing</span>
+                            </a>
+                            <a class="mdc-list-item" href="#">
+                              <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
+                              <span class="mdc-list-item__text">Drafts</span>
+                            </a>
+                          </nav>
+                        </div>
+                      </aside>
+              </nav>         
+              <script>
+                var slideout = new Slideout({
+                  'panel': document.getElementById('panel'),
+                  'menu': document.getElementById('menu'),
+                  'padding': 256,
+                  'tolerance': 70
+                });
+              
+                // Toggle button
+                document.querySelector('.toggle-button').addEventListener('click', function() {
+                  slideout.toggle();
+                });
+              </script>
 
-</div>
-</div>
 </body>
 </html>

@@ -1,17 +1,22 @@
+body{
+    width: 550px;
+    margin: auto;
+    height: 800px;
+}
+
 main{
-    width: 400px;
-    height: 500px;
+    display: block;
+    margin: auto;
+    width: 550px;
+    height: 800px;
     background-color: white;
     border: 1px solid black;
     box-shadow: 3px 6px 18px 0px rgba(0, 0, 0, 0.2);
     overflow: scroll;
 }
-body{
-    width: 400px;
-    height: 900px;
-}
+
 .qus{
-    padding: 15px;
+    padding: 25px;
     margin: 10px;
 }
 /* width */
@@ -35,3 +40,39 @@ body{
   ::-webkit-scrollbar-thumb:hover {
     background: #4a148c; 
 }
+.slideout-menu {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 256px;
+    height: 800px;
+    -webkit-overflow-scrolling: touch;
+    z-index: 0;
+    display: none;
+  }
+  
+  .slideout-menu-left {
+    left: 0;
+  }
+  
+  .slideout-menu-right {
+    right: 0;
+  }
+  
+  .slideout-panel {
+    position: relative;
+    z-index: 1;
+    will-change: transform;
+    background-color: #FFF; /* A background-color is required */
+    min-height: 800px;
+  }
+  
+  .slideout-open,
+  .slideout-open body,
+  .slideout-open .slideout-panel {
+    overflow: hidden;
+  }
+  
+  .slideout-open .slideout-menu {
+    display: block;
+  }

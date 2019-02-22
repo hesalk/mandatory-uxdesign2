@@ -165,7 +165,7 @@
             console.log(newQus.radioHolder);//test
           }    },
         renderbtn: function(element,btnClass,txt){
-          let btn = document.createElement("button");
+          let btn = document.createElement("a");
           let span = document.createElement("span");
           element.appendChild(btn);
           btn.className = btnClass;
@@ -198,9 +198,10 @@
     };
 
     var controller = {
-        main: document.querySelector("main"),
+        main: document.querySelector(".mainCon"),
         modalContent: document.querySelector("#valid--modal"),
         modalsave: document.querySelector("#main--modal--save"),
+        panelSec: document.querySelector("#panel--sec"),
         reqthequs: function(){
             console.log(model.getqus());
             viwe.ajax("GET","https://opentdb.com/api.php?amount=10")
@@ -209,9 +210,13 @@
                 model.savequs(results);
             });
         },
+        style:function(){
+            document.querySelector(".mdc-top-app-bar").style.position = "sticky";
+            document.querySelector(".mdc-top-app-bar").style.top = "0px";
+        },
         quizbtnfanc:() => {
             model.shuffeldansr();
-            let main = document.querySelector("main");
+            let main = document.querySelector(".mainCon");
             viwe.renderqus(model.getqus(),main,"qus","main--radio","radio--input","radio--lable");
             let valbtn = viwe.renderbtn(main,"main--validation btn btn-success","validat");
             valbtn.setAttribute("data-toggle","modal");
@@ -219,11 +224,12 @@
             return valbtn;
         },
         quizbtn: function(){
-            this.newbtn = viwe.renderbtn(this.main, "main--btn btn btn-primary", "click to start");
+            this.newbtn = viwe.renderbtn(this.panelSec, "main--btn material-icons mdc-top-app-bar__action-item", "play_arrow");
             this.newbtn.addEventListener('click', ()=>{
                 console.log(this);
                 this.testbtn = this.quizbtnfanc();
                 console.log(this.testbtn);
+                this.newbtn.remove();
                 this.testbtn.addEventListener('click', ()=>{
                     this.validbtnfunc();
                     let results = model.resultscreen();
@@ -249,6 +255,7 @@
             viwe.refresh(this.main);
             model.refreshModell();
             this.reqthequs();
+            this.newbtn.remove();
             this.quizbtn();
         },
         validbtnfunc: function(){
@@ -275,5 +282,6 @@
 
     controller.reqthequs();
     controller.quizbtn();
+    controller.style();
 
 }());

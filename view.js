@@ -60,7 +60,7 @@ export default {
       };
     },
     renderbtn: function(element,btnClass,txt){
-      let btn = document.createElement("button");
+      let btn = document.createElement("a");
       let span = document.createElement("span")
       element.appendChild(btn);
       btn.className = btnClass;
